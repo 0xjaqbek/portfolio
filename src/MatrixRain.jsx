@@ -28,7 +28,7 @@ const DroppingName = () => {
     const name = 'jaqbek';
     const { isMobile, screenWidth } = useResponsive();
     
-    const totalRows = isMobile ? 16 : 20;
+    const totalRows = isMobile ? 34 : 40;
     const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     
     // Add shadow pulse effect
