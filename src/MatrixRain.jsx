@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useRef, useState } from 'react';
 import PageTransition from './PageTransition';
+import TerminalText from './TerminalText';
 
 const useResponsive = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -25,36 +26,40 @@ const MatrixRain = () => {
     const [overlayOpacity, setOverlayOpacity] = useState(1);
     const [textProgress, setTextProgress] = useState(0);
     const [showText, setShowText] = useState(false);
-    
+    const [showTerminal, setShowTerminal] = useState(false); // New state for terminal text
+
     useEffect(() => {
       // Initial black overlay timing
       setTimeout(() => {
-        setOverlayOpacity(0);  // Start fade out after 0.5s
+        setOverlayOpacity(0);
         setTimeout(() => {
-          setShowOverlay(false);  // Remove overlay from DOM after fade completes
-          setShowText(true); // Show the text after overlay disappears
+          setShowOverlay(false);
+          setShowText(true);
           
-          // Start text animation
           const startTime = Date.now();
-          const duration = 2000; // 2 seconds
+          const duration = 2000;
           
           const animateText = () => {
             const currentTime = Date.now();
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
             
-            // Easing function for smooth transition
             const easeOutQuart = 1 - Math.pow(1 - progress, 4);
             setTextProgress(easeOutQuart);
             
             if (progress < 1) {
               requestAnimationFrame(animateText);
+            } else {
+              // Show terminal text after name animation completes
+              setTimeout(() => {
+                setShowTerminal(true);
+              }, 500);
             }
           };
           
           requestAnimationFrame(animateText);
-        }, 1500);  // Remove after fade duration (0.5s)
-      }, 1000);  // Start fade after 0.5s
+        }, 1500);
+      }, 1000);
       
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
@@ -101,9 +106,17 @@ const MatrixRain = () => {
 
     const Text = () => {
       const letters = 'jaqbek'.split('');
-      const startSpacing = isMobile ? 5000 : 10000; // Reduced spacing for mobile
-      const endSpacing = isMobile ? 30 : 70; // Reduced end spacing for mobile
+      const startSpacing = isMobile ? 5000 : 10000;
+      const endSpacing = isMobile ? 30 : 70;
       const currentSpacing = startSpacing + (endSpacing - startSpacing) * textProgress;
+      
+      // Add font size animation values
+      const startFontSize = isMobile ? '700px' : '9000px';
+      const endFontSize = isMobile ? '40px' : '80px';
+      const currentFontSize = `${
+        parseInt(startFontSize) - 
+        (parseInt(startFontSize) - parseInt(endFontSize)) * textProgress
+      }px`;
       
       return (
         <div className="relative whitespace-nowrap">
@@ -114,12 +127,12 @@ const MatrixRain = () => {
                 key={index}
                 className="text-[#0F0] font-mono absolute"
                 style={{
-                  fontSize: isMobile ? '40px' : '80px', // Smaller font size for mobile
+                  fontSize: currentFontSize,
                   transform: `translateX(${position}px)`,
                   opacity: textProgress,
-                  transition: 'transform 0.1s linear',
+                  transition: 'transform 0.1s linear, font-size 0.1s linear',
                   textShadow: isMobile ? 
-                    '0 0 5px #0F0, 0 0 8px #0F0' : // Smaller glow for mobile
+                    '0 0 5px #0F0, 0 0 8px #0F0' :
                     '0 0 10px #0F0, 0 0 15px #0F0',
                   left: '50%',
                 }}
@@ -136,12 +149,25 @@ const MatrixRain = () => {
         <div className="relative w-full h-screen bg-black overflow-hidden">
           <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
           
-          {/* Centered Text - positioned 25% from bottom */}
+          {/* Centered Name Text */}
           {showText && (
             <div className="absolute inset-0 flex items-end pb-[25vh] justify-center z-10">
               <Text />
             </div>
           )}
+
+          {/* Terminal Text - positioned above the name */}
+          {showTerminal && (
+  <div className="absolute inset-0 flex items-end pb-[35vh] justify-center z-10">
+    <div className="text-[#0F0] font-mono px-4" style={{
+      textShadow: isMobile ? 
+        '0 0 5px #0F0, 0 0 8px #0F0' :
+        '0 0 10px #0F0, 0 0 15px #0F0'
+    }}>
+      <TerminalText speed={50} />
+    </div>
+  </div>
+)}
           
           {showOverlay && (
             <div 

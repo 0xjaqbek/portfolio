@@ -189,6 +189,84 @@ I am ready to take on any challenge, always open to new learning experiences and
           )
         },
         {
+            element: (
+              <div key="3" className="relative">
+                <div className="group cursor-pointer" onClick={() => {
+                  const content = document.getElementById('project-3-content');
+                  content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
+                }}>
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-xl text-green-400 mb-2">Construction Work Management System</h3>
+                    <ChevronDown className="h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out group-[.expanded]:rotate-180" />
+                  </div>
+                  <p className="text-green-300 mb-2">
+                    A progressive web application for Admin and (users) construction workers to log and manage their daily work activities.</p>
+                  
+                  <div id="project-3-content" className="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                    <div className="space-y-4 mt-4 border-t border-green-400/30 pt-4">
+                      <div>
+                        <h4 className="text-green-400 text-sm font-semibold mb-2">Tech Stack</h4>
+                        <div className="text-green-300 text-sm grid grid-cols-1 gap-2">
+                          <div>Frontend: HTML5, CSS3, JavaScript (ES6+)</div>
+                          <div>Backend: Firebase Realtime Database</div>
+                          <div>Authentication: Firebase Auth</div>
+                          <div>PWA Features: Service Workers, Web Manifest</div>
+                          <div>Mobile Optimization: iOS/Android Compatible</div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-green-400 text-sm font-semibold mb-2">Core Functionalities</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <h5 className="text-green-400 text-sm font-semibold mb-1">Work Reporting System</h5>
+                            <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
+                              <li>Date and time tracking</li>
+                              <li>Work type/subtype selection</li>
+                              <li>Location-based assignments</li>
+                              <li>Duration calculation</li>
+                              <li>Overlap prevention</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <h5 className="text-green-400 text-sm font-semibold mb-1">Data Management</h5>
+                            <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
+                              <li>Real-time validation</li>
+                              <li>Multi-step form process</li>
+                              <li>Report summarization</li>
+                              <li>Historical data access</li>
+                              <li>Duplicate prevention</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-green-400 text-sm font-semibold mb-2">Special Implementations</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
+                              <li>iOS/Android time picker adaptations</li>
+                              <li>Custom date handling</li>
+                              <li>Time overlap validation</li>
+                            </ul>
+                          </div>
+                          <div>
+                            <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
+                              <li>Work duration calculations</li>
+                              <li>Multi-language system</li>
+                              <li>Dynamic form generation</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          },
+        {
           element: (
             <div key="2" className="relative">
               <div className="group cursor-pointer" onClick={() => {
@@ -240,27 +318,58 @@ I am ready to take on any challenge, always open to new learning experiences and
           )
         }
       ].map(({ element }) => element),
-    Skills: [
-      <div key="1">
-        <h3 className="text-xl text-green-400 mb-2">Frontend</h3>
-        <ul className="text-green-300 space-y-1">
-          <li>HTML & Tailwind CSS</li>
-          <li>JavaScript (ES6+)</li>
-          <li>React / Vite</li>
-        </ul>
-      </div>,
-      <div key="2">
-        <h3 className="text-xl text-green-400 mb-2">Backend</h3>
-        <ul className="text-green-300 space-y-1">
-          <li>Node.js</li>
-          <li>Express.js</li>
-          <li>NoSQL (Firebase, MongoDB)</li>
-        </ul>
-      </div>
-    ],
+      Skills: (
+        <div className="p-4">  {/* Added padding directly here instead of relying on container border */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {/* Frontend Skills */}
+            <div className="border border-green-400 p-2 rounded-lg">
+              <h3 className="text-xl text-green-400">Frontend</h3>
+              <ul className="text-green-300 space-y-1">
+                <li>HTML & CSS</li>
+                <li>JavaScript (ES6+)</li>
+                <li>TypeScript</li>
+                <li>React</li>
+                <li>Vite</li>
+                <li>Tailwind CSS</li>
+              </ul>
+            </div>
+      
+            {/* Backend Skills */}
+            <div className="border border-green-400 p-2 rounded-lg">
+              <h3 className="text-xl text-green-400">Backend</h3>
+              <ul className="text-green-300 space-y-1">
+                <li>Node.js</li>
+                <li>Express.js</li>
+                <li>NoSQL (Firebase, MongoDB)</li>
+              </ul>
+            </div>
+      
+            {/* Web3 & Blockchain Skills */}
+            <div className="border border-green-400 p-2 rounded-lg">
+              <h3 className="text-xl text-green-400">Web3 & Blockchain</h3>
+              <ul className="text-green-300 space-y-1">
+                <li>Smart Contracts (Solidity)</li>
+                <li>EVM-compatible Blockchains</li>
+                <li>dApps Development</li>
+                <li>Wagmi, Ethers.js</li>
+              </ul>
+            </div>
+      
+            {/* Additional Skills */}
+            <div className="border border-green-400 p-2 rounded-lg">
+              <h3 className="text-xl text-green-400">Additional Skills</h3>
+              <ul className="text-green-300 space-y-1">
+                <li>Version Control (Git, GitHub)</li>
+                <li>Telegram Bot Development</li>
+                <li>Game Development (Telegram)</li>
+              </ul>
+            </div>
+          </div>
+        </div>  
+      ),
     Contact: (
-        <div className="space-y-4 col-span-full">
-          <form className="space-y-4" onSubmit={(e) => {
+        <div className="space-y-4">
+          <form onSubmit={(e) => {
             e.preventDefault();
             const message = e.target.elements.message.value;
             const email = e.target.elements.email.value;
@@ -269,109 +378,114 @@ I am ready to take on any challenge, always open to new learning experiences and
               handleClose();
             }
           }}>
-            <textarea
-              name="message"
-              placeholder="Write your message here..."
-              className="w-full p-3 text-green-300 bg-transparent border border-green-400 
-                rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-              rows="5"
-              required
-            />
-            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-              <input
-                type="email"
-                name="email"
-                placeholder="Your email address"
-                className="flex-1 p-3 text-green-300 bg-transparent border border-green-400 
-                  rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-                required
-              />
-              <button type="submit" className="px-4 py-2 font-semibold text-green-400 
-                border border-green-400 rounded-lg hover:bg-green-400 whitespace-nowrap
-                hover:text-black transition-colors">
-                Send Message
-              </button>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-xl text-green-400 mb-2">Send me a message</h3>
+                <textarea
+                  name="message"
+                  placeholder="Write your message here..."
+                  className="w-full p-3 text-green-300 bg-transparent border border-green-400 
+                    rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                  rows="5"
+                  required
+                />
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your email address"
+                  className="flex-1 p-3 text-green-300 bg-transparent border border-green-400 
+                    rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                  required
+                />
+                <button type="submit" className="px-4 py-2 font-semibold text-green-400 
+                  border border-green-400 rounded-lg hover:bg-green-400 whitespace-nowrap
+                  hover:text-black transition-colors">
+                  Send Message
+                </button>
+              </div>
             </div>
           </form>
         </div>
-      )
+      ),
     };
-  const currentContent = content[section];
-  const items = Array.isArray(currentContent) ? currentContent : [currentContent];
-  const totalPages = Math.ceil(items.length / itemsPerPage);
-  const currentItems = items.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-
-  return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
-      {/* Background Image with Zoom Effect */}
-      <div className="absolute inset-0">
-        <img
-          src={isMobile ? mobileImg : laptopImg}
-          alt="Background"
-          className={`w-full h-full object-cover
-            ${isClosing ? 'animate-zoom-out' : 'animate-zoom-in'}
-          `}
-        />
-      </div>
-
-      {/* Matrix Rain Effect */}
-      {showMatrix && <canvas ref={canvasRef} className="absolute inset-0" />}
-      
-      {/* Content */}
-      <div className={`absolute inset-0 transition-opacity duration-300
-        ${showContent ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute inset-0 flex items-center justify-center p-4">
-          <div className="bg-black bg-opacity-80 border border-green-400 rounded-lg 
-            p-6 max-w-4xl w-full max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
-              <h2 className="text-2xl font-bold text-green-400">{section}</h2>
-              <button onClick={handleClose} className="text-green-400 hover:text-green-300">
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className={`grid ${section === 'Bio' || section === 'Contact' ? 'grid-cols-1' : window.innerWidth >= 768 ? 'grid-cols-2 gap-6' : 'grid-cols-1 gap-4'}`}>
-              {currentItems.map((item, index) => (
-                <div key={index} className={`${section !== 'Contact' ? 'border border-green-400' : ''} p-4 rounded-lg ${(section === 'Bio' || section === 'Contact') ? 'col-span-full' : ''}`}>
-                  {item}
+    const currentContent = content[section];
+    const items = Array.isArray(currentContent) ? currentContent : [currentContent];
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+    const currentItems = items.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  
+    return (
+      <div className="fixed inset-0 z-50 overflow-hidden">
+        {/* Background Image with Zoom Effect */}
+        <div className="absolute inset-0">
+          <img
+            src={isMobile ? mobileImg : laptopImg}
+            alt="Background"
+            className={`w-full h-full object-cover
+              ${isClosing ? 'animate-zoom-out' : 'animate-zoom-in'}
+            `}
+          />
+        </div>
+  
+        {/* Matrix Rain Effect */}
+        {showMatrix && <canvas ref={canvasRef} className="absolute inset-0" />}
+        
+        {/* Content */}
+        <div className={`absolute inset-0 transition-opacity duration-300
+      ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+      <div className="absolute inset-0 flex items-center justify-center p-4">
+        <div className={`bg-black bg-opacity-80 border border-green-400 rounded-lg 
+          ${section === 'Contact' ? 'p-1' : 'p-2'} max-w-4xl w-full max-h-[80vh] overflow-y-auto`}>
+          <div className="flex justify-between items-start mb-4">
+            <h2 className="text-2xl font-bold text-green-400">{section}</h2>
+            <button onClick={handleClose} className="text-green-400 hover:text-green-300">
+              <X size={24} />
+            </button>
+          </div>
+  
+          <div className={`grid ${section === 'Bio' || section === 'Contact' ? 'grid-cols-1' : window.innerWidth >= 768 ? 'grid-cols-2 gap-2' : 'grid-cols-1 gap-2'}`}>
+  {currentItems.map((item, index) => (
+    <div key={index} className={`${section !== 'Contact' && section !== 'Skills' ? 'border border-green-400' : ''} p-1 rounded-lg`}>
+      {item}
+    </div>
+  ))}
+</div>
+  
+              {totalPages > 1 && (
+                <div className="mt-6 flex justify-center space-x-4">
+                  <button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 text-green-400 border border-green-400 
+                      rounded disabled:opacity-50"
+                  >
+                    Previous
+                  </button>
+                  <span className="text-green-400 flex items-center">
+                    {currentPage} / {totalPages}
+                  </span>
+                  <button
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 text-green-400 border border-green-400 
+                      rounded disabled:opacity-50"
+                  >
+                    Next
+                  </button>
                 </div>
-              ))}
+              )}
             </div>
-
-            {totalPages > 1 && (
-              <div className="mt-6 flex justify-center space-x-4">
-                <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  className="px-4 py-2 text-green-400 border border-green-400 
-                    rounded disabled:opacity-50"
-                >
-                  Previous
-                </button>
-                <span className="text-green-400 flex items-center">
-                  {currentPage} / {totalPages}
-                </span>
-                <button
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                  disabled={currentPage === totalPages}
-                  className="px-4 py-2 text-green-400 border border-green-400 
-                    rounded disabled:opacity-50"
-                >
-                  Next
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </div>
-    </div>
-  );
-};
-
-SectionModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  section: PropTypes.oneOf(['Bio', 'Projects', 'Skills', 'Contact']).isRequired
-};
-
-export default SectionModal;
+    );
+  };
+  
+  SectionModal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    section: PropTypes.oneOf(['Bio', 'Projects', 'Skills', 'Contact']).isRequired
+  };
+  
+  export default SectionModal;

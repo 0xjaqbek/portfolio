@@ -305,11 +305,6 @@ const TextElement = ({
 );
 };
 
-TextElement.defaultProps = {
-  className: '',
-  isContact: false
-};
-
 // Add these new keyframes to your existing style useEffect
 useEffect(() => {
   const style = document.createElement('style');
