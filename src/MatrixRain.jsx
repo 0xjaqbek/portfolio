@@ -158,8 +158,8 @@ const MatrixRain = () => {
 
           {/* Terminal Text - positioned above the name */}
           {showTerminal && (
-  <div className="absolute inset-0 flex items-end pb-[35vh] justify-center z-10">
-    <div className="text-[#0F0] font-mono px-4" style={{
+  <div className="absolute inset-0 flex items-end pb-[35vh] px-4 md:pl-[40vw] md:pr-4">
+    <div className="text-[#0F0] font-mono" style={{
       textShadow: isMobile ? 
         '0 0 5px #0F0, 0 0 8px #0F0' :
         '0 0 10px #0F0, 0 0 15px #0F0'
