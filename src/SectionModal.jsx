@@ -58,7 +58,7 @@ const SectionModal = ({ isOpen, onClose, section }) => {
       setTimeout(() => {
         setShowContent(true);
         setShowMatrix(true);
-      }, 500);
+      }, 100);
     } else {
       setShowContent(false);
       setShowMatrix(false);
