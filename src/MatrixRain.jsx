@@ -102,7 +102,7 @@ const MatrixRain = () => {
     const Text = () => {
       const letters = 'jaqbek'.split('');
       const startSpacing = isMobile ? 5000 : 10000; // Reduced spacing for mobile
-      const endSpacing = isMobile ? 25 : 70; // Reduced end spacing for mobile
+      const endSpacing = isMobile ? 30 : 70; // Reduced end spacing for mobile
       const currentSpacing = startSpacing + (endSpacing - startSpacing) * textProgress;
       
       return (
