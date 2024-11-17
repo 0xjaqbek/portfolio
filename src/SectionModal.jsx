@@ -239,7 +239,7 @@ const [isConstructionExpanded, setIsConstructionExpanded] = useState(false);
                   onClick={() => setShowAuditPreview(true)}
                   className="px-4 py-2 text-green-400 border border-green-400 rounded hover:bg-green-400 hover:text-black transition-colors matrix-header"
                 >
-                  Preview Images
+                  Preview
                 </button>
               </div>
             )}
@@ -385,7 +385,7 @@ const [isConstructionExpanded, setIsConstructionExpanded] = useState(false);
                     onClick={() => setShowConstructionPreview(true)}
                     className="px-4 py-2 text-green-400 border border-green-400 rounded hover:bg-green-400 hover:text-black transition-colors matrix-header"
                   >
-                    Preview Images
+                    Preview
                   </button>
                 </div>
               )}
