@@ -1,17 +1,17 @@
 // imageConstants.js
 export const auditSystemImages = [
-    './assets/a/1.jpg',
-    './assets/a/2.jpg',
-    './assets/a/3.jpg',
-    './assets/a/4.jpg',
-    './assets/a/5.jpg'
+    '../public/a/1.jpg',
+    '../public/a/2.jpg',
+    '../public/a/3.jpg',
+    '../public/a/4.jpg',
+    '../public/a/5.jpg'
   ];
   
   export const constructionSystemImages = [
-    './assets/b/1.jpg',
-    './assets/b/2.jpg',
-    './assets/b/3.jpg',
-    './assets/b/4.jpg',
-    './assets/b/5.jpg',
-    './assets/b/6.jpg'
+    '../public/b/1.jpg',
+    '../public/b/2.jpg',
+    '../public/b/3.jpg',
+    '../public/b/4.jpg',
+    '../public/b/5.jpg',
+    '../public/b/6.jpg'
   ];

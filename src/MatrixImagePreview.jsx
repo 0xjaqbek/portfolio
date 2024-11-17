@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const MatrixImagePreview = ({ images, onClose }) => {
+// Replace defaultProps with default parameter
+const MatrixImagePreview = ({ images = [], onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrevious = () => {
@@ -63,24 +64,19 @@ MatrixImagePreview.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-// Add runtime check for non-empty images array
-MatrixImagePreview.defaultProps = {
-  images: [],
-};
-
 // Add runtime validation
-const validateProps = (props) => {
-  if (!props.images || props.images.length === 0) {
+const validateProps = ({ images }) => {
+  if (!images || images.length === 0) {
     throw new Error('MatrixImagePreview: images array cannot be empty');
   }
 };
 
+// Wrapper component with validation
 const WrappedMatrixImagePreview = (props) => {
   validateProps(props);
   return <MatrixImagePreview {...props} />;
 };
 
 WrappedMatrixImagePreview.propTypes = MatrixImagePreview.propTypes;
-WrappedMatrixImagePreview.defaultProps = MatrixImagePreview.defaultProps;
 
 export default WrappedMatrixImagePreview;
