@@ -3,6 +3,8 @@ import { X, ChevronDown } from 'lucide-react';
 import PropTypes from 'prop-types';
 import mobileImg from './mobile11.jpg';
 import laptopImg from './laptop11.jpg';
+import MatrixImagePreview from './MatrixImagePreview';
+import { auditSystemImages, constructionSystemImages } from './imageConstants';
 
 const SectionModal = ({ isOpen, onClose, section }) => {
   const [showContent, setShowContent] = useState(false);
@@ -12,6 +14,10 @@ const SectionModal = ({ isOpen, onClose, section }) => {
   const itemsPerPage = 6;
   const canvasRef = React.useRef(null);
   const isMobile = window.innerWidth < 768;
+  const [showAuditPreview, setShowAuditPreview] = useState(false);
+  const [showConstructionPreview, setShowConstructionPreview] = useState(false);
+  const [isAuditExpanded, setIsAuditExpanded] = useState(false);
+const [isConstructionExpanded, setIsConstructionExpanded] = useState(false);
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -181,13 +187,14 @@ const SectionModal = ({ isOpen, onClose, section }) => {
       {
         element: (
           <div key="1" className="relative">
-            <div className="group cursor-pointer" onClick={() => {
+            <div className="group" onClick={() => {
               const content = document.getElementById('project-1-content');
               content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
+              setIsAuditExpanded(!isAuditExpanded);
             }}>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center cursor-pointer">
                 <h3 className="text-xl text-green-400 mb-2 matrix-header">Audit Document Management System</h3>
-                <ChevronDown className="h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out group-[.expanded]:rotate-180" />
+                <ChevronDown className={`h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out ${isAuditExpanded ? 'rotate-180' : ''}`} />
               </div>
               <p className="text-green-300 mb-2">A web application for managing audit documentation with validation workflow</p>
               
@@ -195,40 +202,56 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                 <div className="space-y-4 mt-4 border-t border-green-400/30 pt-4">
                   <div>
                     <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Tech Stack</h4>
-                      <div className="text-green-300 text-sm grid grid-cols-1 gap-2">
-                        <div>Frontend: HTML5, CSS3, JavaScript (ES6+)</div>
-                        <div>Backend: Firebase (Firestore)</div>
-                        <div>Authentication: Firebase Auth</div>
-                        <div>UI Framework: Bootstrap 5</div>
-                      </div>
+                    <div className="text-green-300 text-sm grid grid-cols-1 gap-2">
+                      <div>Frontend: HTML5, CSS3, JavaScript (ES6+)</div>
+                      <div>Backend: Firebase (Firestore)</div>
+                      <div>Authentication: Firebase Auth</div>
+                      <div>UI Framework: Bootstrap 5</div>
                     </div>
-                    
-                    <div>
+                  </div>
+                  
+                  <div>
                     <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Key Features</h4>
-                      <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
-                        <li>Document creation and management</li>
-                        <li>Multi-step validation process</li>
-                        <li>Real-time updates</li>
-                        <li>PDF report generation</li>
-                        <li>Mobile-responsive design</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
+                    <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
+                      <li>Document creation and management</li>
+                      <li>Multi-step validation process</li>
+                      <li>Real-time updates</li>
+                      <li>PDF report generation</li>
+                      <li>Mobile-responsive design</li>
+                    </ul>
+                  </div>
+                  
+                  <div>
                     <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Technical Highlights</h4>
-                      <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
-                        <li>Firebase real-time database integration</li>
-                        <li>Component-based architecture</li>
-                        <li>State management system</li>
-                        <li>Responsive UI/UX design</li>
-                      </ul>
-                    </div>
+                    <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
+                      <li>Firebase real-time database integration</li>
+                      <li>Component-based architecture</li>
+                      <li>State management system</li>
+                      <li>Responsive UI/UX design</li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
-          )
-        },
+            {isAuditExpanded && (
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => setShowAuditPreview(true)}
+                  className="px-4 py-2 text-green-400 border border-green-400 rounded hover:bg-green-400 hover:text-black transition-colors matrix-header"
+                >
+                  Preview Images
+                </button>
+              </div>
+            )}
+            {showAuditPreview && (
+              <MatrixImagePreview
+                images={auditSystemImages}
+                onClose={() => setShowAuditPreview(false)}
+              />
+            )}
+          </div>
+        )
+      },
         {
           element: (
             <div key="2" className="relative">
@@ -283,13 +306,14 @@ const SectionModal = ({ isOpen, onClose, section }) => {
         {
           element: (
             <div key="3" className="relative">
-              <div className="group cursor-pointer" onClick={() => {
+              <div className="group" onClick={() => {
                 const content = document.getElementById('project-3-content');
                 content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
+                setIsConstructionExpanded(!isConstructionExpanded);
               }}>
-                <div className="flex justify-between items-center">
-                <h3 className="text-xl text-green-400 mb-2 matrix-header">Construction Work Management System</h3>
-                  <ChevronDown className="h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out group-[.expanded]:rotate-180" />
+                <div className="flex justify-between items-center cursor-pointer">
+                  <h3 className="text-xl text-green-400 mb-2 matrix-header">Construction Work Management System</h3>
+                  <ChevronDown className={`h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out ${isConstructionExpanded ? 'rotate-180' : ''}`} />
                 </div>
                 <p className="text-green-300 mb-2">
                   A progressive web application for Admin and (users) construction workers to log and manage their daily work activities.</p>
@@ -297,7 +321,7 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                 <div id="project-3-content" className="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
                   <div className="space-y-4 mt-4 border-t border-green-400/30 pt-4">
                     <div>
-                    <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Tech Stack</h4>
+                      <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Tech Stack</h4>
                       <div className="text-green-300 text-sm grid grid-cols-1 gap-2">
                         <div>Frontend: HTML5, CSS3, JavaScript (ES6+)</div>
                         <div>Backend: Firebase Realtime Database</div>
@@ -308,10 +332,10 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                     </div>
                     
                     <div>
-                    <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Core Functionalities</h4>
+                      <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Core Functionalities</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                        <h5 className="text-green-400 text-sm font-semibold mb-1 matrix-header">Work Reporting System</h5>
+                          <h5 className="text-green-400 text-sm font-semibold mb-1 matrix-header">Work Reporting System</h5>
                           <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
                             <li>Date and time tracking</li>
                             <li>Work type/subtype selection</li>
@@ -321,7 +345,7 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                           </ul>
                         </div>
                         <div>
-                        <h5 className="text-green-400 text-sm font-semibold mb-1 matrix-header">Data Management</h5>
+                          <h5 className="text-green-400 text-sm font-semibold mb-1 matrix-header">Data Management</h5>
                           <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
                             <li>Real-time validation</li>
                             <li>Multi-step form process</li>
@@ -334,7 +358,7 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                     </div>
                     
                     <div>
-                    <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Special Implementations</h4>
+                      <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Special Implementations</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
@@ -355,6 +379,22 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                   </div>
                 </div>
               </div>
+              {isConstructionExpanded && (
+                <div className="mt-4 text-center">
+                  <button
+                    onClick={() => setShowConstructionPreview(true)}
+                    className="px-4 py-2 text-green-400 border border-green-400 rounded hover:bg-green-400 hover:text-black transition-colors matrix-header"
+                  >
+                    Preview Images
+                  </button>
+                </div>
+              )}
+              {showConstructionPreview && (
+                <MatrixImagePreview
+                  images={constructionSystemImages}
+                  onClose={() => setShowConstructionPreview(false)}
+                />
+              )}
             </div>
           )
         },
@@ -448,23 +488,11 @@ const SectionModal = ({ isOpen, onClose, section }) => {
               <ul className="text-green-300 space-y-1">
                 <li>HTML & CSS</li>
                 <li>JavaScript (ES6+)</li>
-                <li>TypeScript</li>
                 <li>React</li>
-                <li>Vite</li>
                 <li>Tailwind CSS</li>
               </ul>
             </div>
-      
-            {/* Backend Skills */}
-            <div className="w-full border border-green-400 p-4 rounded-lg">
-              <h3 className="text-xl text-green-400 mb-2 matrix-header">Backend</h3>
-              <ul className="text-green-300 space-y-1">
-                <li>Node.js</li>
-                <li>Express.js</li>
-                <li>NoSQL (Firebase, MongoDB)</li>
-              </ul>
-            </div>
-      
+                  
             {/* Web3 & Blockchain Skills */}
             <div className="w-full border border-green-400 p-4 rounded-lg">
               <h3 className="text-xl text-green-400 mb-2 matrix-header">Web3 & Blockchain</h3>
@@ -475,7 +503,17 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                 <li>Wagmi, Ethers.js</li>
               </ul>
             </div>
-      
+            
+            {/* Backend Skills */}
+            <div className="w-full border border-green-400 p-4 rounded-lg">
+              <h3 className="text-xl text-green-400 mb-2 matrix-header">Backend</h3>
+              <ul className="text-green-300 space-y-1">
+                <li>Node.js</li>
+                <li>Express.js</li>
+                <li>NoSQL (Firebase, MongoDB)</li>
+              </ul>
+            </div>
+
             {/* Additional Skills */}
             <div className="w-full border border-green-400 p-4 rounded-lg">
               <h3 className="text-xl text-green-400 mb-2 matrix-header">Additional Skills</h3>
