@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import mobileImg from './mobile11.jpg';
 import laptopImg from './laptop11.jpg';
 import MatrixImagePreview from './MatrixImagePreview';
-import { auditSystemImages, constructionSystemImages } from './imageConstants';
+import { auditSystemImages, constructionSystemImages, meldTokenImages } from './imageConstants';
 
 const SectionModal = ({ isOpen, onClose, section }) => {
   const [showContent, setShowContent] = useState(false);
@@ -17,7 +17,9 @@ const SectionModal = ({ isOpen, onClose, section }) => {
   const [showAuditPreview, setShowAuditPreview] = useState(false);
   const [showConstructionPreview, setShowConstructionPreview] = useState(false);
   const [isAuditExpanded, setIsAuditExpanded] = useState(false);
-const [isConstructionExpanded, setIsConstructionExpanded] = useState(false);
+  const [isConstructionExpanded, setIsConstructionExpanded] = useState(false);
+  const [isMeldExpanded, setIsMeldExpanded] = useState(false);
+  const [showMeldPreview, setShowMeldPreview] = useState(false);
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -401,13 +403,14 @@ const [isConstructionExpanded, setIsConstructionExpanded] = useState(false);
         {
           element: (
             <div key="4" className="relative">
-              <div className="group cursor-pointer" onClick={() => {
+              <div className="group" onClick={() => {
                 const content = document.getElementById('project-4-content');
                 content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
+                setIsMeldExpanded(!isMeldExpanded);
               }}>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center cursor-pointer">
                   <h3 className="text-xl text-green-400 mb-2 matrix-header">MELD Token Checker</h3>
-                  <ChevronDown className="h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out group-[.expanded]:rotate-180" />
+                  <ChevronDown className={`h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out ${isMeldExpanded ? 'rotate-180' : ''}`} />
                 </div>
                 <p className="text-green-300 mb-2">
                   A Web3 application for verifying MELD token holdings and NFT ownership to grant access to an exclusive Telegram group
@@ -475,6 +478,22 @@ const [isConstructionExpanded, setIsConstructionExpanded] = useState(false);
                   </div>
                 </div>
               </div>
+              {isMeldExpanded && (
+                <div className="mt-4 text-center">
+                  <button
+                    onClick={() => setShowMeldPreview(true)}
+                    className="px-4 py-2 text-green-400 border border-green-400 rounded hover:bg-green-400 hover:text-black transition-colors matrix-header"
+                  >
+                    Preview Images
+                  </button>
+                </div>
+              )}
+              {showMeldPreview && (
+                <MatrixImagePreview
+                  images={meldTokenImages}
+                  onClose={() => setShowMeldPreview(false)}
+                />
+              )}
             </div>
           )
         }

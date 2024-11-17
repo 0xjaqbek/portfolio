@@ -15,3 +15,5 @@ export const auditSystemImages = [
     './b/5.jpg',
     './b/6.jpg'
   ];
+
+  export const meldTokenImages = ['/public/wc.jpg'];
