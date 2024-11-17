@@ -127,8 +127,8 @@ const TextElement = ({
           setTextColor(colors[Math.floor(Math.random() * colors.length)]);
           
           const fonts = isHovered
-            ? ['Consolas', 'Arial', 'Tahoma', 'Times New Roman', 'Courier']
-            : ['Consolas', 'Arial', 'Tahoma'];
+          ? ['Share Tech Mono', 'Fira Code', 'Source Code Pro', 'VT323', 'Ubuntu Mono', 'Consolas', 'monospace']
+          : ['Share Tech Mono', 'Fira Code', 'Consolas', 'monospace']
           setFontFamily(fonts[Math.floor(Math.random() * fonts.length)]);
           
           const duration = isHovered ? 200 : 300;
