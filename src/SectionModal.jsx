@@ -20,6 +20,7 @@ const SectionModal = ({ isOpen, onClose, section }) => {
   const [isConstructionExpanded, setIsConstructionExpanded] = useState(false);
   const [isMeldExpanded, setIsMeldExpanded] = useState(false);
   const [showMeldPreview, setShowMeldPreview] = useState(false);
+  const [isMedicalExpanded, setIsMedicalExpanded] = useState(false);
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -254,57 +255,70 @@ const SectionModal = ({ isOpen, onClose, section }) => {
           </div>
         )
       },
-        {
-          element: (
-            <div key="2" className="relative">
-              <div className="group cursor-pointer" onClick={() => {
-                const content = document.getElementById('project-2-content');
-                content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
-              }}>
-                <div className="flex justify-between items-center">
+      {
+        element: (
+          <div key="2" className="relative">
+            <div className="group" onClick={() => {
+              const content = document.getElementById('project-2-content');
+              content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + 'px';
+              setIsMedicalExpanded(!isMedicalExpanded);
+            }}>
+              <div className="flex justify-between items-center cursor-pointer">
                 <h3 className="text-xl text-green-400 mb-2 matrix-header">Medical Consent Form System</h3>
-                  <ChevronDown className="h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out group-[.expanded]:rotate-180" />
-                </div>
-                <p className="text-green-300 mb-2">A web application for collecting and managing medical consent forms with digital signature capabilities</p>
-                
-                <div id="project-2-content" className="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
-                  <div className="space-y-4 mt-4 border-t border-green-400/30 pt-4">
-                    <div>
+                <ChevronDown className={`h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out ${isMedicalExpanded ? 'rotate-180' : ''}`} />
+              </div>
+              <p className="text-green-300 mb-2">A web application for collecting and managing medical consent forms with digital signature capabilities</p>
+              
+              <div id="project-2-content" className="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                <div className="space-y-4 mt-4 border-t border-green-400/30 pt-4">
+                  <div>
                     <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Tech Stack</h4>
-                      <div className="text-green-300 text-sm grid grid-cols-1 gap-2">
-                        <div>Frontend: HTML5, CSS3, JavaScript (ES6+)</div>
-                        <div>UI Components: Custom CSS with CSS Variables</div>
-                        <div>PDF Generation: jsPDF</div>
-                        <div>Digital Signature: SignaturePad</div>
-                      </div>
+                    <div className="text-green-300 text-sm grid grid-cols-1 gap-2">
+                      <div>Frontend: HTML5, CSS3, JavaScript (ES6+)</div>
+                      <div>UI Components: Custom CSS with CSS Variables</div>
+                      <div>PDF Generation: jsPDF</div>
+                      <div>Digital Signature: SignaturePad</div>
                     </div>
-                    
-                    <div>
+                  </div>
+                  
+                  <div>
                     <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Key Features</h4>
-                      <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
-                        <li>Digital consent form creation</li>
-                        <li>Electronic signature capture</li>
-                        <li>PDF document generation</li>
-                        <li>Mobile-responsive design</li>
-                        <li>Polish language support</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
+                    <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
+                      <li>Digital consent form creation</li>
+                      <li>Electronic signature capture</li>
+                      <li>PDF document generation</li>
+                      <li>Mobile-responsive design</li>
+                      <li>Polish language support</li>
+                    </ul>
+                  </div>
+                  
+                  <div>
                     <h4 className="text-green-400 text-sm font-semibold mb-2 matrix-header">Technical Highlights</h4>
-                      <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
-                        <li>Modular JavaScript architecture</li>
-                        <li>Component-based styling system</li>
-                        <li>Canvas-based image processing</li>
-                        <li>Mobile-first responsive design</li>
-                      </ul>
-                    </div>
+                    <ul className="text-green-300 text-sm space-y-1 list-disc list-inside">
+                      <li>Modular JavaScript architecture</li>
+                      <li>Component-based styling system</li>
+                      <li>Canvas-based image processing</li>
+                      <li>Mobile-first responsive design</li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
-          )
-        },
+            {isMedicalExpanded && (
+              <div className="mt-4 text-center">
+                <a 
+                  href="https://0xjaqbek.github.io/podpis/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 text-green-400 border border-green-400 rounded hover:bg-green-400 hover:text-black transition-colors matrix-header"
+                >
+                  Live Demo
+                </a>
+              </div>
+            )}
+          </div>
+        )
+      },
         {
           element: (
             <div key="3" className="relative">
@@ -484,7 +498,7 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                     onClick={() => setShowMeldPreview(true)}
                     className="px-4 py-2 text-green-400 border border-green-400 rounded hover:bg-green-400 hover:text-black transition-colors matrix-header"
                   >
-                    Preview Images
+                    Preview
                   </button>
                 </div>
               )}

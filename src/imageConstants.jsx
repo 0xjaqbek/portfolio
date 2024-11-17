@@ -16,4 +16,4 @@ export const auditSystemImages = [
     './b/6.jpg'
   ];
 
-  export const meldTokenImages = ['/public/wc.jpg'];
+  export const meldTokenImages = ['./a/wc.jpg'];
