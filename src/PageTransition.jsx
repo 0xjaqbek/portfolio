@@ -1,12 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import mobileImg from './mobile11.jpg';
 import laptopImg from './laptop11.jpg';
-
 import SectionModal from './SectionModal';
 
-const PageTransition = () => {
+const PageTransition = ({ onReturnToMatrix }) => {
   const useResponsive = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -91,352 +90,221 @@ const PageTransition = () => {
   const [showNewPage, setShowNewPage] = useState(false);
   const [showText, setShowText] = useState(false);
   const { isMobile } = useResponsive();
+  const clickCountRef = useRef(0);
 
-// First, update the TextElement definition to accept an isContact prop
-const TextElement = ({ 
-  text, 
-  className = '', // Default parameter
-  isContact = false // Default parameter
-}) => {
 
-  const [startGlitch, setStartGlitch] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const glitchedText = useGlitchText(text, startGlitch, isHovered);
-  const [isShapeGlitching, setIsShapeGlitching] = useState(false);
-  const [textColor, setTextColor] = useState(isContact ? 'black' : 'white');
-  const [fontFamily, setFontFamily] = useState('Consolas');
+  const [isReturning, setIsReturning] = useState(false);
 
-  useEffect(() => {
-    if (showText) {
-      const timer = setTimeout(() => {
-        setStartGlitch(true);
-        
-        const glitch = () => {
-          if (!isHovered) {
-            setIsShapeGlitching(true);
-          }
+  const TextElement = ({ 
+    text, 
+    className = '',
+    isContact = false
+  }) => {
+    const [startGlitch, setStartGlitch] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const glitchedText = useGlitchText(text, startGlitch, isHovered);
+    const [isShapeGlitching, setIsShapeGlitching] = useState(false);
+    const [textColor, setTextColor] = useState(isContact ? 'black' : 'white');
+    const [fontFamily, setFontFamily] = useState('Consolas');
+
+    useEffect(() => {
+      if (showText) {
+        const timer = setTimeout(() => {
+          setStartGlitch(true);
           
-          const colors = isContact
-            ? (isHovered 
-                ? ['#000000', '#202020', '#404040']
-                : ['#000000'])
-            : (isHovered 
-                ? ['#FFFFFF', '#E0E0E0', '#CCCCCC', '#F0F0F0', '#FFE0E0', '#E0FFE0', '#E0E0FF']
-                : ['#FFFFFF', '#E0E0E0', '#CCCCCC', '#F0F0F0']);
-          setTextColor(colors[Math.floor(Math.random() * colors.length)]);
-          
-          const fonts = isHovered
-          ? ['Share Tech Mono', 'Press Start 2P', 'IBM Plex Mono', 'Major Mono Display', 'DotGothic16', 'Pixelify Sans', 'Xanh Mono', 'monospace']
-          : ['Share Tech Mono', 'Press Start 2P', 'IBM Plex Mono', 'monospace']
-          setFontFamily(fonts[Math.floor(Math.random() * fonts.length)]);
-          
-          const duration = isHovered ? 200 : 300;
-          setTimeout(() => {
+          const glitch = () => {
             if (!isHovered) {
-              setIsShapeGlitching(false);
+              setIsShapeGlitching(true);
             }
-            setTextColor(isContact ? 'black' : 'white');
-            setFontFamily('Consolas');
             
-            const threshold = isHovered ? 0.5 : 0.3;
-            const minDelay = isHovered ? 1000 : 2000;
-            const maxDelay = isHovered ? 2000 : 3000;
+            const colors = isContact
+              ? (isHovered 
+                  ? ['#000000', '#202020', '#404040']
+                  : ['#000000'])
+              : (isHovered 
+                  ? ['#FFFFFF', '#E0E0E0', '#CCCCCC', '#F0F0F0', '#FFE0E0', '#E0FFE0', '#E0E0FF']
+                  : ['#FFFFFF', '#E0E0E0', '#CCCCCC', '#F0F0F0']);
+            setTextColor(colors[Math.floor(Math.random() * colors.length)]);
             
-            if (Math.random() < threshold) {
-              setTimeout(glitch, minDelay + Math.random() * maxDelay);
-            } else {
-              setTimeout(glitch, maxDelay + Math.random() * 2000);
-            }
-          }, duration);
-
-          const fontChanges = isHovered ? 3 : 2;
-          for(let i = 0; i < fontChanges; i++) {
+            const fonts = isHovered
+            ? ['Share Tech Mono', 'Press Start 2P', 'IBM Plex Mono', 'Major Mono Display', 'DotGothic16', 'Pixelify Sans', 'Xanh Mono', 'monospace']
+            : ['Share Tech Mono', 'Press Start 2P', 'IBM Plex Mono', 'monospace'];
+            setFontFamily(fonts[Math.floor(Math.random() * fonts.length)]);
+            
+            const duration = isHovered ? 200 : 300;
             setTimeout(() => {
-              const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-              setFontFamily(randomFont);
-            }, Math.random() * (isHovered ? 1000 : 2000));
-          }
-        };
-        
-        setTimeout(glitch, 12000);
-      }, 200);
-      return () => clearTimeout(timer);
-    }
-  }, [showText, isHovered, isContact]);
+              if (!isHovered) {
+                setIsShapeGlitching(false);
+              }
+              setTextColor(isContact ? 'black' : 'white');
+              setFontFamily('Consolas');
+              
+              const threshold = isHovered ? 0.5 : 0.3;
+              const minDelay = isHovered ? 1000 : 2000;
+              const maxDelay = isHovered ? 2000 : 3000;
+              
+              if (Math.random() < threshold) {
+                setTimeout(glitch, minDelay + Math.random() * maxDelay);
+              } else {
+                setTimeout(glitch, maxDelay + Math.random() * 2000);
+              }
+            }, duration);
 
-  const getGlitchShape = () => {
-    if (!isShapeGlitching || isHovered) return { 
-      className: 'rounded-lg w-full h-full', 
-      clipPath: 'none',
-      transform: 'none'
-    };
-    
-    const shapes = [
-      // Rectangle variations
-      { 
-        className: 'rounded-lg w-full h-full scale-100', 
-        clipPath: 'none',
-        transform: 'rotate(-1deg) scale(1.05)'
-      },
-      { 
-        className: 'rounded-none w-full h-full', 
-        clipPath: 'none',
-        transform: 'rotate(1deg) scale(0.95)'
-      },
-      // Circle variations
-      { 
-        className: 'rounded-full w-full h-full',
-        clipPath: 'circle(50% at 50% 50%)',
-        transform: 'rotate(-1deg) scale(1.02)'
-      },
-      { 
-        className: 'rounded-full w-full h-full',
-        clipPath: 'circle(48% at 52% 48%)',
-        transform: 'scale(1.05)'
-      },
-      // Triangle variations
-      { 
-        className: 'w-full h-full',
-        clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
-        transform: 'rotate(1deg) scale(0.98)'
-      },
-      { 
-        className: 'w-full h-full',
-        clipPath: 'polygon(50% 100%, 100% 0%, 0% 0%)',
-        transform: 'rotate(-2deg) scale(1.03)'
-      },
-      // Diamond
-      { 
-        className: 'w-full h-full',
-        clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
-        transform: 'rotate(2deg) scale(0.97)'
-      },
-      // Hexagon
-      { 
-        className: 'w-full h-full',
-        clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
-        transform: 'rotate(-1deg) scale(1.04)'
-      },
-      // Asymmetrical shapes
-      { 
-        className: 'w-full h-full',
-        clipPath: 'polygon(0% 20%, 60% 20%, 100% 0%, 100% 80%, 40% 80%, 0% 100%)',
-        transform: 'rotate(1deg) scale(1.01)'
+            const fontChanges = isHovered ? 3 : 2;
+            for(let i = 0; i < fontChanges; i++) {
+              setTimeout(() => {
+                const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+                setFontFamily(randomFont);
+              }, Math.random() * (isHovered ? 1000 : 2000));
+            }
+          };
+          
+          setTimeout(glitch, 12000);
+        }, 200);
+        return () => clearTimeout(timer);
       }
-    ];
-    
-    const shape = shapes[Math.floor(Math.random() * shapes.length)];
-    const offset = {
-      x: (Math.random() - 0.5) * 4,
-      y: (Math.random() - 0.5) * 4
-    };
-    
-    return {
-      ...shape,
-      transform: `${shape.transform} translate(${offset.x}px, ${offset.y}px)`
-    };
-  };
+    }, [showText, isHovered, isContact]);
 
-  const shape = getGlitchShape();
-
-  const getBackgroundStyles = () => {
-    if (isHovered) {
-      return {
-        animation: `backgroundGlitch${isContact ? 'Contact' : ''} 4s infinite`
+    const getGlitchShape = () => {
+      if (!isShapeGlitching || isHovered) return { 
+        className: 'rounded-lg w-full h-full', 
+        clipPath: 'none',
+        transform: 'none'
       };
-    }
-    return {};
-  };
+      
+      const shapes = [
+        { 
+          className: 'rounded-lg w-full h-full scale-100', 
+          clipPath: 'none',
+          transform: 'rotate(-1deg) scale(1.05)'
+        },
+        { 
+          className: 'rounded-none w-full h-full', 
+          clipPath: 'none',
+          transform: 'rotate(1deg) scale(0.95)'
+        },
+        { 
+          className: 'rounded-full w-full h-full',
+          clipPath: 'circle(50% at 50% 50%)',
+          transform: 'rotate(-1deg) scale(1.02)'
+        },
+        { 
+          className: 'rounded-full w-full h-full',
+          clipPath: 'circle(48% at 52% 48%)',
+          transform: 'scale(1.05)'
+        },
+        { 
+          className: 'w-full h-full',
+          clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+          transform: 'rotate(1deg) scale(0.98)'
+        },
+        { 
+          className: 'w-full h-full',
+          clipPath: 'polygon(50% 100%, 100% 0%, 0% 0%)',
+          transform: 'rotate(-2deg) scale(1.03)'
+        },
+        { 
+          className: 'w-full h-full',
+          clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+          transform: 'rotate(2deg) scale(0.97)'
+        },
+        { 
+          className: 'w-full h-full',
+          clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+          transform: 'rotate(-1deg) scale(1.04)'
+        },
+        { 
+          className: 'w-full h-full',
+          clipPath: 'polygon(0% 20%, 60% 20%, 100% 0%, 100% 80%, 40% 80%, 0% 100%)',
+          transform: 'rotate(1deg) scale(1.01)'
+        }
+      ];
+      
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const offset = {
+        x: (Math.random() - 0.5) * 4,
+        y: (Math.random() - 0.5) * 4
+      };
+      
+      return {
+        ...shape,
+        transform: `${shape.transform} translate(${offset.x}px, ${offset.y}px)`
+      };
+    };
 
-  return (
-    <>
-      <div 
-        className={`relative ${showText ? 'slide-in-bck-center text-follow' : 'opacity-0'} cursor-pointer`} 
-        style={{ width: '250px', height: '80px' }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={() => {
-          setIsModalOpen(true);
-        }}
-      >
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative overflow-visible w-full h-full flex items-center justify-center">
-            <div 
-              className={`absolute transition-all duration-20 
-                ${shape.className} 
-                ${isHovered ? 'background-glitch' : ''} 
-                ${isContact ? 'bg-white bg-opacity-40' : 'bg-black bg-opacity-40'}`}
-              style={{ 
-                clipPath: shape.clipPath,
-                transform: shape.transform,
-                minWidth: '100%',
-                minHeight: '100%',
-                left: '0',
-                right: '0',
-                top: '0',
-                bottom: '0',
-                ...getBackgroundStyles()
-              }}
-            />
-            
-            <div className="relative z-10 px-10 py-5">
-              <h1 
-                className={`font-bold transition-all duration-20
-                  ${isMobile ? 'text-4xl' : 'text-6xl'} ${className}`}
+    const shape = getGlitchShape();
+
+    const getBackgroundStyles = () => {
+      if (isHovered) {
+        return {
+          animation: `backgroundGlitch${isContact ? 'Contact' : ''} 4s infinite`
+        };
+      }
+      return {};
+    };
+
+    return (
+      <>
+        <div 
+          className={`relative ${showText ? 'slide-in-bck-center text-follow' : 'opacity-0'} cursor-pointer`} 
+          style={{ width: '250px', height: '80px' }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative overflow-visible w-full h-full flex items-center justify-center">
+              <div 
+                className={`absolute transition-all duration-20 
+                  ${shape.className} 
+                  ${isHovered ? 'background-glitch' : ''} 
+                  ${isContact ? 'bg-white bg-opacity-40' : 'bg-black bg-opacity-40'}`}
                 style={{ 
-                  color: textColor,
-                  fontFamily: fontFamily,
+                  clipPath: shape.clipPath,
+                  transform: shape.transform,
+                  minWidth: '100%',
+                  minHeight: '100%',
+                  left: '0',
+                  right: '0',
+                  top: '0',
+                  bottom: '0',
+                  ...getBackgroundStyles()
                 }}
-              >
-                {glitchedText}
-              </h1>
+              />
+              
+              <div className="relative z-10 px-10 py-5">
+                <h1 
+                  className={`font-bold transition-all duration-20
+                    ${isMobile ? 'text-4xl' : 'text-6xl'} ${className}`}
+                  style={{ 
+                    color: textColor,
+                    fontFamily: fontFamily,
+                  }}
+                >
+                  {glitchedText}
+                </h1>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <SectionModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        section={text}
-      />
-    </>
-);
-};
-
-// Add these new keyframes to your existing style useEffect
-useEffect(() => {
-  const style = document.createElement('style');
-  style.textContent = `
-    ${/* Previous styles remain the same until backgroundGlitch */ ''}
-
-    .background-glitch {
-      animation: backgroundGlitch 4s infinite;
-    }
-
-    @keyframes backgroundGlitch {
-      0% {
-        background-color: rgba(0, 0, 0, 0.4);
-        transform: scale(1);
-      }
-      15% {
-        background-color: rgba(50, 0, 0, 0.4);
-        transform: scale(1.02);
-      }
-      25% {
-        background-color: rgba(0, 0, 0, 0.4);
-        transform: scale(1);
-      }
-      35% {
-        background-color: rgba(0, 30, 50, 0.4);
-        transform: scale(1.02);
-      }
-      45% {
-        background-color: rgba(0, 0, 0, 0.4);
-        transform: scale(1);
-      }
-      55% {
-        background-color: rgba(50, 0, 50, 0.4);
-        transform: scale(1.02);
-      }
-      65% {
-        background-color: rgba(0, 0, 0, 0.4);
-        transform: scale(1);
-      }
-      75% {
-        background-color: rgba(0, 50, 0, 0.4);
-        transform: scale(1.02);
-      }
-      85% {
-        background-color: rgba(0, 0, 0, 0.4);
-        transform: scale(1);
-      }
-      95% {
-        background-color: rgba(50, 50, 0, 0.4);
-        transform: scale(1.02);
-      }
-      100% {
-        background-color: rgba(0, 0, 0, 0.4);
-        transform: scale(1);
-      }
-    }
-
-    @keyframes backgroundGlitchContact {
-      0% {
-        background-color: rgba(255, 255, 255, 0.4);
-        transform: scale(1);
-      }
-      15% {
-        background-color: rgba(255, 235, 235, 0.4);
-        transform: scale(1.02);
-      }
-      25% {
-        background-color: rgba(255, 255, 255, 0.4);
-        transform: scale(1);
-      }
-      35% {
-        background-color: rgba(235, 255, 255, 0.4);
-        transform: scale(1.02);
-      }
-      45% {
-        background-color: rgba(255, 255, 255, 0.4);
-        transform: scale(1);
-      }
-      55% {
-        background-color: rgba(255, 235, 255, 0.4);
-        transform: scale(1.02);
-      }
-      65% {
-        background-color: rgba(255, 255, 255, 0.4);
-        transform: scale(1);
-      }
-      75% {
-        background-color: rgba(235, 255, 235, 0.4);
-        transform: scale(1.02);
-      }
-      85% {
-        background-color: rgba(255, 255, 255, 0.4);
-        transform: scale(1);
-      }
-      95% {
-        background-color: rgba(255, 255, 235, 0.4);
-        transform: scale(1.02);
-      }
-      100% {
-        background-color: rgba(255, 255, 255, 0.4);
-        transform: scale(1);
-      }
-    }
-
-  @keyframes zoom-in {
-    0% { 
-      transform: scale(1);
-      transform-origin: center center;
-    }
-    100% { 
-      transform: scale(10) translateY(-5%);
-      transform-origin: center center;
-    }
-  }
-
-  .animate-zoom-in {
-  
-    animation: zoom-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  `;
-  document.head.appendChild(style);
-
-  return () => {
-    document.head.removeChild(style);
+        <SectionModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          section={text}
+        />
+      </>
+    );
   };
-}, []);
 
-TextElement.propTypes = {
-  text: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  isContact: PropTypes.bool
-};
+  TextElement.propTypes = {
+    text: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    isContact: PropTypes.bool
+  };
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -520,14 +388,29 @@ TextElement.propTypes = {
         }
       }
 
+      @keyframes zoom-out-reverse {
+        0% { 
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% { 
+          transform: scale(0.1);
+          opacity: 0;
+        }
+      }
+
       .zoom-out-animation-mobile {
         animation: quickZoomOutMobile 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
                    backgroundMove 30s ease-in-out infinite 0.8s;
       }
 
-      .zoom-out-animation-desktop {
+.zoom-out-animation-desktop {
         animation: quickZoomOut 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
                    backgroundMove 30s ease-in-out infinite 0.8s;
+      }
+
+      .animate-zoom-out-reverse {
+        animation: zoom-out-reverse 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
 
       .slide-in-bck-center {
@@ -596,6 +479,53 @@ TextElement.propTypes = {
         }
       }
 
+      @keyframes backgroundGlitchContact {
+        0% {
+          background-color: rgba(255, 255, 255, 0.4);
+          transform: scale(1);
+        }
+        15% {
+          background-color: rgba(255, 235, 235, 0.4);
+          transform: scale(1.02);
+        }
+        25% {
+          background-color: rgba(255, 255, 255, 0.4);
+          transform: scale(1);
+        }
+        35% {
+          background-color: rgba(235, 255, 255, 0.4);
+          transform: scale(1.02);
+        }
+        45% {
+          background-color: rgba(255, 255, 255, 0.4);
+          transform: scale(1);
+        }
+        55% {
+          background-color: rgba(255, 235, 255, 0.4);
+          transform: scale(1.02);
+        }
+        65% {
+          background-color: rgba(255, 255, 255, 0.4);
+          transform: scale(1);
+        }
+        75% {
+          background-color: rgba(235, 255, 235, 0.4);
+          transform: scale(1.02);
+        }
+        85% {
+          background-color: rgba(255, 255, 255, 0.4);
+          transform: scale(1);
+        }
+        95% {
+          background-color: rgba(255, 255, 235, 0.4);
+          transform: scale(1.02);
+        }
+        100% {
+          background-color: rgba(255, 255, 255, 0.4);
+          transform: scale(1);
+        }
+      }
+
       .background-glitch::before {
         content: '';
         position: absolute;
@@ -644,21 +574,6 @@ TextElement.propTypes = {
           opacity: 1;
         }
       }
-
-      @keyframes zoom-out {
-  0% { 
-    transform: scale(10) translateY(-10%);
-    transform-origin: center center;
-  }
-  100% { 
-    transform: scale(1);
-    transform-origin: center center;
-  }
-}
-
-.animate-zoom-out {
-  animation: zoom-out 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
     `;
     document.head.appendChild(style);
 
@@ -666,6 +581,40 @@ TextElement.propTypes = {
       document.head.removeChild(style);
     };
   }, []);
+
+  const handleCenterClick = useCallback((e) => {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const clickRadius = 100;
+  
+    if (Math.abs(e.clientX - centerX) < clickRadius && 
+        Math.abs(e.clientY - centerY) < clickRadius) {
+      clickCountRef.current += 1;
+      
+      if (clickCountRef.current === 5) {
+        setIsReturning(true);
+        // Add flash effect
+        const flash = document.createElement('div');
+        flash.className = 'absolute inset-0 bg-white flash-animation';
+        flash.style.zIndex = '60';
+        document.body.appendChild(flash);
+  
+        // Remove flash and trigger return
+        setTimeout(() => {
+          document.body.removeChild(flash);
+          setShowNewPage(false);
+          setShowText(false);
+          setIsVisible(false);
+          // Signal to parent to show matrix rain and remove other elements
+          onReturnToMatrix({
+            hideText: true,
+            hideTerminal: true,
+            showFractals: true
+          });
+        }, 300);
+      }
+    }
+  }, [onReturnToMatrix]);
 
   const handleTransition = useCallback(() => {
     if (!isVisible) return;
@@ -676,31 +625,39 @@ TextElement.propTypes = {
       }, 1200);
     }, 200);
   }, [isVisible]);
-  
+
   useEffect(() => {
     const handleClick = () => {
-      setIsVisible(true);
+      if (!isVisible && !isReturning) {
+        setIsVisible(true);
+      }
     };
     
     window.addEventListener('click', handleClick);
     return () => {
       window.removeEventListener('click', handleClick);
     };
-  }, []);
-  
+  }, [isVisible, isReturning]);
+
   useEffect(() => {
     if (isVisible) {
       handleTransition();
     }
   }, [isVisible, handleTransition]);
-  
+
   if (showNewPage) {
     return (
-      <div className="fixed inset-0 z-50 overflow-hidden">
+      <div 
+        className="fixed inset-0 z-50 overflow-hidden"
+        onClick={handleCenterClick}
+      >
         <img
           src={isMobile ? mobileImg : laptopImg}
           alt="Background"
-          className={`w-full h-full object-cover ${isMobile ? 'zoom-out-animation-mobile' : 'zoom-out-animation-desktop'}`}
+          className={`w-full h-full object-cover ${
+            isReturning ? 'animate-zoom-out-reverse' :
+            isMobile ? 'zoom-out-animation-mobile' : 'zoom-out-animation-desktop'
+          }`}
         />
         
         {/* Desktop Layout */}
@@ -718,7 +675,7 @@ TextElement.propTypes = {
               </div>
             </div>
             <div className="flex-1 flex justify-center items-center">
-            <TextElement text="Contact" isContact={true} />
+              <TextElement text="Contact" isContact={true} />
             </div>
           </div>
         </div>
@@ -732,14 +689,16 @@ TextElement.propTypes = {
               <TextElement text="Skills" />
             </div>
             <div className="flex-1 flex items-center justify-center">
-            <TextElement text="Contact" isContact={true} />
+              <TextElement text="Contact" isContact={true} />
             </div>
           </div>
         </div>
       </div>
     );
   }
+
   
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden">
       {isVisible && (
@@ -750,6 +709,10 @@ TextElement.propTypes = {
       )}
     </div>
   );
+};
+
+PageTransition.propTypes = {
+  onReturnToMatrix: PropTypes.func.isRequired
 };
 
 export default PageTransition;
