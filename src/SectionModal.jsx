@@ -75,6 +75,51 @@ const SectionModal = ({ isOpen, onClose, section }) => {
         letter-spacing: 2px;
         animation: textShadowPulse 2s infinite;
       }
+
+       /* Webkit browsers (Chrome, Safari, newer versions of Edge) */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #00ff00;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00ff00;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00cc00;
+    }
+
+    /* Firefox */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #00ff00 rgba(0, 0, 0, 0.8);
+    }
+
+    /* For modal content specifically */
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #00ff00;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: #00ff00;
+      border-radius: 4px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: #00cc00;
+    }
     `;
     document.head.appendChild(style);
 
@@ -267,7 +312,7 @@ const SectionModal = ({ isOpen, onClose, section }) => {
                 <h3 className="text-xl text-green-400 mb-2 matrix-header">Medical Consent Form System</h3>
                 <ChevronDown className={`h-5 w-5 text-green-400 group-hover:text-green-300 transition-transform duration-300 ease-in-out ${isMedicalExpanded ? 'rotate-180' : ''}`} />
               </div>
-              <p className="text-green-300 mb-2">A web application for collecting and managing medical consent forms with digital signature capabilities</p>
+              <p className="text-green-300 mb-2">A web application for collecting and managing medical consent forms and signatures, with formatted PDF documents ready for download </p>
               
               <div id="project-2-content" className="overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
                 <div className="space-y-4 mt-4 border-t border-green-400/30 pt-4">
@@ -631,7 +676,7 @@ const SectionModal = ({ isOpen, onClose, section }) => {
             <div 
               ref={modalRef}
               className={`bg-black bg-opacity-80 border border-green-400 rounded-lg 
-                ${section === 'Contact' ? 'p-1' : 'p-2'} max-w-4xl w-full max-h-[80vh] overflow-y-auto`}
+                ${section === 'Contact' ? 'p-1' : 'p-2'} max-w-4xl w-full max-h-[80vh] overflow-y-auto modal-content`}
             >
           <div className="flex justify-between items-start mb-4">
           <h2 className="text-2xl font-bold text-green-400 matrix-header">{section}</h2>
