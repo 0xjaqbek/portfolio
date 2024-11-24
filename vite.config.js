@@ -9,10 +9,14 @@ export default defineConfig({
      'Content-Security-Policy': `
        default-src 'self';
        script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' chrome-extension: blob:;
-       style-src 'self' 'unsafe-inline';
+       style-src 'self' 'unsafe-inline' chrome-extension:;
        img-src 'self' data: blob: chrome-extension:;
        connect-src 'self' https://api.emailjs.com chrome-extension:;
        font-src 'self';
+       worker-src 'self' blob:;
+       frame-src 'self' chrome-extension:;
+       script-src-elem 'self' 'unsafe-inline' chrome-extension:;
+       style-src-elem 'self' 'unsafe-inline' chrome-extension:;
      `.replace(/\s+/g, ' ').trim()
    }
  }
