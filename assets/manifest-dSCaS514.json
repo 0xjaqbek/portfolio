@@ -1,0 +1,61 @@
+{
+  "name": "jaqbek Portfolio - Frontend & Web3 Developer",
+  "short_name": "jaqbek Dev",
+  "description": "Frontend Developer Portfolio showcasing Web3 and enterprise applications",
+  "start_url": "/portfolio/",
+  "id": "/portfolio/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "any",
+  "categories": ["development", "portfolio", "web3"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/portfolio/public/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/portfolio/public/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/portfolio/public/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "apple touch icon"
+    },
+    {
+      "src": "/portfolio/public/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/portfolio/public/mstile-150x150.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    },
+    {
+      "src": "/portfolio/public/safari-pinned-tab.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Projects",
+      "url": "/portfolio/#projects",
+      "description": "View my projects"
+    },
+    {
+      "name": "Contact",
+      "url": "/portfolio/#contact",
+      "description": "Contact me"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
