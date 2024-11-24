@@ -12,38 +12,38 @@
   "lang": "en",
   "icons": [
     {
-      "src": "/portfolio/android-chrome-192x192.png",
+      "src": "/portfolio/public/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/portfolio/android-chrome-512x512.png",
+      "src": "/portfolio/public/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/portfolio/apple-touch-icon.png",
+      "src": "/portfolio/public/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "apple touch icon"
     },
     {
-      "src": "/portfolio/favicon-16x16.png",
+      "src": "/portfolio/public/favicon-16x16.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "/portfolio/favicon-32x32.png",
+      "src": "/portfolio/public/favicon-32x32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/portfolio/mstile-150x150.png",
+      "src": "/portfolio/public/mstile-150x150.png",
       "sizes": "150x150",
       "type": "image/png"
     },
     {
-      "src": "/portfolio/safari-pinned-tab.svg",
+      "src": "/portfolio/public/safari-pinned-tab.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "maskable"

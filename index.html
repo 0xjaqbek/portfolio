@@ -1,24 +1,171 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/j.ico" />
+    <!-- PWA Support -->
+    <link rel="manifest" href="/portfolio/manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/portfolio/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/portfolio/favicon-16x16.png">
+    <link rel="mask-icon" href="/portfolio/safari-pinned-tab.svg" color="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#000000">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>jaqbek Portfolio</title>
-    <meta name="theme-color" content="#000000">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://api.emailjs.com 'unsafe-inline' 'unsafe-eval' chrome-extension: data: blob: filesystem:;">
-    <!-- Preconnect to Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Matrix-themed Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Mono&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap" rel="stylesheet">
+    <!-- Single CSP meta tag -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' chrome-extension: blob:;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: blob: chrome-extension:;
+      connect-src 'self' https://api.emailjs.com chrome-extension:;
+      font-src 'self';
+    ">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="jaqbek Portfolio - Frontend Developer & Web3 Specialist">
+    <meta name="description" content="Frontend Developer specializing in React, TypeScript, and Web3. Portfolio showcasing enterprise solutions, blockchain applications, and innovative web development projects.">
+    <meta name="keywords" content="frontend developer, React, TypeScript, Web3, blockchain, TON, JavaScript, Firebase">
+    <meta name="author" content="jaqbek">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jaqbek.github.io/portfolio/">
+    <meta property="og:title" content="jaqbek Portfolio - Frontend Developer & Web3 Specialist">
+    <meta property="og:description" content="Frontend Developer specializing in React, TypeScript, and Web3. View my projects including blockchain games, audit systems, and enterprise applications.">
+    <meta property="og:image" content="https://jaqbek.github.io/portfolio/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://jaqbek.github.io/portfolio/">
+    <meta property="twitter:title" content="jaqbek Portfolio - Frontend Developer & Web3 Specialist">
+    <meta property="twitter:description" content="Frontend Developer specializing in React, TypeScript, and Web3. View my projects including blockchain games, audit systems, and enterprise applications.">
+    <meta property="twitter:image" content="https://jaqbek.github.io/portfolio/preview.png">
+
+    <!-- Local Fonts -->
+    <style>
+      @font-face {
+        font-family: 'Share Tech Mono';
+        src: url('/portfolio/fonts/ShareTechMono-Regular.woff2') format('woff2');
+        font-display: swap;
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Press Start 2P';
+        src: url('/portfolio/fonts/PressStart2P-Regular.woff2') format('woff2');
+        font-display: swap;
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'IBM Plex Mono';
+        src: url('/portfolio/fonts/IBMPlexMono-Regular.woff2') format('woff2');
+        font-display: swap;
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Major Mono Display';
+        src: url('/portfolio/fonts/MajorMonoDisplay-Regular.woff2') format('woff2');
+        font-display: swap;
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'DotGothic16';
+        src: url('/portfolio/fonts/DotGothic16-Regular.woff2') format('woff2');
+        font-display: swap;
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Pixelify Sans';
+        src: url('/portfolio/fonts/PixelifySans-VariableFont_wght.woff2') format('woff2');
+        font-display: swap;
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'Xanh Mono';
+        src: url('/portfolio/fonts/XanhMono-Regular.woff2') format('woff2');
+        font-display: swap;
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      /* Initial styles */
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        font-family: 'Share Tech Mono', monospace;
+      }
+
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "jaqbek",
+        "url": "https://jaqbek.github.io/portfolio/",
+        "jobTitle": "Frontend Developer",
+        "knowsAbout": [
+          "JavaScript",
+          "React",
+          "TypeScript",
+          "Web3",
+          "Firebase",
+          "TON Blockchain"
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Frontend Developer",
+          "skills": [
+            "React",
+            "JavaScript",
+            "TypeScript",
+            "Web3",
+            "Firebase",
+            "Blockchain Development"
+          ]
+        },
+        "workExample": [
+          {
+            "@type": "WebApplication",
+            "name": "Tap Race Sprint",
+            "applicationCategory": "Game,Blockchain",
+            "operatingSystem": "Web"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Audit Management System",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "Medical Consent System",
+            "applicationCategory": "HealthcareApplication",
+            "operatingSystem": "Web"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

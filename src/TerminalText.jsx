@@ -24,7 +24,7 @@ const TerminalText = ({ speed = 50 }) => {
     'Connection established',
     'Encryption cracked',
     'System breach successful',
-    'Click to enter'
+    'Doubble Click to enter'
   ];
 
   const glitchWord = (word) => {
