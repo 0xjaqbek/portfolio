@@ -33,11 +33,6 @@
       "type": "image/png"
     },
     {
-      "src": "/portfolio/public/mstile-150x150.png",
-      "sizes": "150x150",
-      "type": "image/png"
-    },
-    {
       "src": "/portfolio/public/safari-pinned-tab.svg",
       "sizes": "any",
       "type": "image/svg+xml",
