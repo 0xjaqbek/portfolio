@@ -175,24 +175,33 @@ const MatrixRain = () => {
       };
     }, [isMobile, showFractals]);
 
-const handleScreenClick = (e) => {
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
-  const clickRadius = 100;
-
-  if (Math.abs(e.clientX - centerX) < clickRadius && 
-      Math.abs(e.clientY - centerY) < clickRadius) {
-    setClickCount(prev => {
-      const newCount = prev + 1;
-      if (newCount === 5) {
-        setShowText(false);        // Hide jaqbek text
-        setShowTerminal(false);    // Hide terminal text
-        setTextProgress(0);        // Reset text animation progress
+    const handleScreenClick = (e) => {
+      // Don't trigger if clicking a button or within modal
+      if (
+        e.target.tagName.toLowerCase() === 'button' || 
+        e.target.closest('.modal-content') ||
+        e.target.closest('a') ||  // For any links
+        showPageTransition  // Don't count clicks when page transition is showing
+      ) {
+        return;
       }
-      return newCount;
-    });
-  }
-};
+    
+      setClickCount(prev => {
+        const newCount = prev + 1;
+        if (newCount === 5) {
+          setShowText(false);        
+          setShowTerminal(false);    
+          setTextProgress(0);        
+          setShowInitialAnimation(false);
+          
+          // Show fractals after a delay
+          setTimeout(() => {
+            setShowFractals(true);
+          }, 1000);
+        }
+        return newCount;
+      });
+    };
 
     const Text = () => {
       const letters = 'jaqbek'.split('');

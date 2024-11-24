@@ -674,10 +674,10 @@ const SectionModal = ({ isOpen, onClose, section }) => {
           <div className="absolute inset-0 flex items-center justify-center p-4">
             {/* Add ref to the modal container */}
             <div 
-              ref={modalRef}
-              className={`bg-black bg-opacity-80 border border-green-400 rounded-lg 
-                ${section === 'Contact' ? 'p-1' : 'p-2'} max-w-4xl w-full max-h-[80vh] overflow-y-auto modal-content`}
-            >
+  ref={modalRef}
+  className={`modal-content bg-black bg-opacity-80 border border-green-400 rounded-lg 
+    ${section === 'Contact' ? 'p-1' : 'p-2'} max-w-4xl w-full max-h-[80vh] overflow-y-auto`}
+>
           <div className="flex justify-between items-start mb-4">
           <h2 className="text-2xl font-bold text-green-400 matrix-header">{section}</h2>
             <button onClick={handleClose} className="text-green-400 hover:text-green-300">
