@@ -18,7 +18,7 @@ const PortfolioAssistant = () => {
   const abortControllerRef = useRef(null);
 
   // Assistant URL from environment variables
-  const ASSISTANT_URL = import.meta.env.VITE_ASSISTANT_API_URL || 'https://your-heroku-app.herokuapp.com/api/portfolio-chat';
+  const ASSISTANT_URL = import.meta.env.VITE_ASSISTANT_API_URL || 'https://portfolioasistant-0081e8bd2f7d.herokuapp.com/api/portfolio-chat';
 
   // Initial setup
   useEffect(() => {
