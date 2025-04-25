@@ -253,7 +253,7 @@ const PortfolioAssistant = () => {
       ) : (
         <div className="flex flex-col h-full bg-black border border-green-500 rounded-lg shadow-2xl overflow-hidden">
           <div className="flex justify-between items-center p-3 bg-black border-b border-green-500">
-            <h3 className="text-green-500 font-bold matrix-header">Portfolio Assistant</h3>
+            <h3 className="text-green-500 font-bold matrix-header">jaqbek AIsistant</h3>
             <div className="flex space-x-2">
               <button onClick={toggleFullScreen} className="text-green-500 hover:text-green-400 transition-colors">
                 {isFullScreen ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
