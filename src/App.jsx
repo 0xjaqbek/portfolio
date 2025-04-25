@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import MatrixRain from './MatrixRain';
 import Scanlines from './Scanlines';
-
+import PortfolioAssistant from './PortfolioAssistant';
 
 function App() {
   useEffect(() => {
@@ -21,6 +21,7 @@ function App() {
       <MatrixRain />
       <Scanlines />
       <div className="vignette" />
+      <PortfolioAssistant />
     </div>
   );
 }

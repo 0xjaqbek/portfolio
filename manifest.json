@@ -12,16 +12,6 @@
   "lang": "en",
   "icons": [
     {
-      "src": "/portfolio/public/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/portfolio/public/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
       "src": "/portfolio/public/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
