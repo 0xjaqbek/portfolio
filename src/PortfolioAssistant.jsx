@@ -248,7 +248,7 @@ const PortfolioAssistant = () => {
           aria-label="Open chat assistant"
         >
           <MessageSquare className="h-5 w-5" />
-          <span className="matrix-header">Ask Portfolio Assistant</span>
+          <span className="matrix-header">Ask AIsistant</span>
         </button>
       ) : (
         <div className="flex flex-col h-full bg-black border border-green-500 rounded-lg shadow-2xl overflow-hidden">
